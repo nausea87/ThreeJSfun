@@ -56,7 +56,7 @@ gui.addColor(debugOptions, 'color')
    material.color.set(debugOptions.color)
 })
 
-gui.add(debugOptions, 'spin')
+gui.add(debugOptions, 'spin').name('rotate')
 
 // Base
 
@@ -78,9 +78,9 @@ const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
 // Debug
-gui.add(mesh.position, 'y').min(- 3).max(3).step(0.01).name('red-cube-Y')
-gui.add(mesh.position, 'x').min(- 3).max(3).step(0.01).name('red-cube-X')
-gui.add(mesh.position, 'z').min(- 3).max(3).step(0.01).name('red-cube-Z')
+gui.add(mesh.position, 'y').min(- 3).max(3).step(0.01).name('earth-Y')
+gui.add(mesh.position, 'x').min(- 3).max(3).step(0.01).name('earth-X')
+gui.add(mesh.position, 'z').min(- 3).max(3).step(0.01).name('earth-Z')
 gui.add(mesh, 'visible')
 gui.add(material, 'wireframe')
 
