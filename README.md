@@ -1,6 +1,7 @@
 # ThreeJSfun
 
 Experimenting on ThreeJS
+Interactive Solar System in ze prågress osv änna.
 
 ##
 
