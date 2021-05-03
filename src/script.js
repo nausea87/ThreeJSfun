@@ -5,6 +5,41 @@ import gsap from 'gsap'
 import './fullscreen.js'
 import * as dat from 'dat.gui'
 
+
+/////// Textures /////////
+const loadingManager = new THREE.LoadingManager()
+
+loadingManager.onStart = () => {
+    console.log('onStart')
+}
+loadingManager.onLoaded = () => {
+    console.log('OnLoaded')
+}
+
+loadingManager.onProgress = () => {
+    console.log('onProgress')
+}
+
+loadingManager.onError = () => {
+    console.log('onError')
+}
+
+
+
+const textureLoader = new THREE.TextureLoader(loadingManager)
+const colorTexture = textureLoader.load('/textures/door/color.jpg')
+const alphaTexture = textureLoader.load('/textures/alpha.jpg')
+const heightTexture = textureLoader.load('/textures/height.jpg')
+const normalTexture = textureLoader.load('/textures/normal.jpg')
+const ambientOcclusionTexture = textureLoader.load('/textures/ambientOcclusion.jpg')
+const metalnessTexture = textureLoader.load('/textures/metalness.jpg')
+const roughnessTexture = textureLoader.load('/textures/roughness.jpg')
+const jupiterTexture = textureLoader.load('/textures/jupiter.jpeg')
+const earthTexture = textureLoader.load('textures/earth.jpeg')
+
+
+
+
 // Debug
 const gui = new dat.GUI({ closed: true })
 // gui.hide()
@@ -12,7 +47,7 @@ const gui = new dat.GUI({ closed: true })
 const debugOptions = {
     color: 0xff0000,
     spin: () => {
-        gsap.to(mesh.rotation, { duration: 1, y: mesh.rotation.y + 10 })
+        gsap.to(mesh.rotation, { duration: 600, y: mesh.rotation.y + 10 })
     }
 }
 
@@ -35,13 +70,11 @@ const scene = new THREE.Scene()
 
 // Object
 
-const geometry = new THREE.BoxBufferGeometry(1,1,1)
+const geometry = new THREE.SphereBufferGeometry(1,128,128)
 const material = new THREE.MeshBasicMaterial({
-    color: debugOptions.color
+    map: earthTexture
 })
-
 const mesh = new THREE.Mesh(geometry, material)
-
 scene.add(mesh)
 
 // Debug
